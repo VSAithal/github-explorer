@@ -1,5 +1,5 @@
 import type { GitHubRepository, SearchUsersResponse } from "@/types/github"
-import { BASE_URL } from "./constants"
+import { BASE_URL, BASIC_ERROR_MESSAGE } from "./constants"
 
 export const searchUsers = async (
   query: string,
@@ -9,7 +9,7 @@ export const searchUsers = async (
   )
 
   if (!response.ok) {
-    let errorMessage = "Something went wrong. Please try again."
+    let errorMessage = BASIC_ERROR_MESSAGE
     try {
       const errorData = await response.json()
       if (errorData && errorData.message) {
@@ -38,7 +38,7 @@ export const fetchUserRepositories = async (
   )
 
   if (!response.ok) {
-    let errorMessage = "Something went wrong. Please try again."
+    let errorMessage = BASIC_ERROR_MESSAGE
     try {
       const errorData = await response.json()
       if (errorData && errorData.message) {

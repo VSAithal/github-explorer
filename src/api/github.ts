@@ -4,6 +4,7 @@ import { BASE_URL, BASIC_ERROR_MESSAGE } from "./constants"
 export const searchUsers = async (
   query: string,
 ): Promise<SearchUsersResponse> => {
+  console.log("query", query)
   const response = await fetch(
     `${BASE_URL}/search/users?q=${encodeURIComponent(query)}&per_page=5`,
   )

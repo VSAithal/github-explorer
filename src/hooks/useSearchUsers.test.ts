@@ -2,23 +2,10 @@ import { QueryWrapper } from "@/test/queryWrapper"
 import { useSearchUsers } from "./useSearchUsers"
 import { renderHook, waitFor } from "@testing-library/react"
 import { searchUsers } from "@/api/github"
-import type { SearchUsersResponse } from "@/types/github"
+import { mockSearchResponse } from "@/test/fixtures"
 
 vi.mock("@/api/github")
 
-const mockSearchResponse = {
-  total_count: 1,
-  incomplete_results: false,
-  items: [
-    {
-      id: 1,
-      login: "testuser",
-      avatar_url: "https://avatars.githubusercontent.com/u/1",
-      html_url: "https://github.com/testuser",
-      type: "User",
-    },
-  ],
-} as SearchUsersResponse
 describe("useSearchUsers", () => {
   beforeEach(() => {
     vi.clearAllMocks()

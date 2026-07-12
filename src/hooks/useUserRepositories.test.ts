@@ -1,36 +1,11 @@
 import { fetchUserRepositories } from "@/api/github"
-import type { GitHubRepository } from "@/types/github"
 import { renderHook, waitFor } from "@testing-library/react"
 import { useUserRepositories } from "./useUserRepositories"
 import { QueryWrapper } from "@/test/queryWrapper"
+import { mockRepositories } from "@/test/fixtures"
 
 vi.mock("@/api/github")
-const mockRepositories = [
-  {
-    id: 1,
-    name: "test-repo",
-    full_name: "test/test-repo",
-    description: "A test repository",
-    html_url: "https://github.com/test/test-repo",
-    stargazers_count: 10,
-    language: "TypeScript",
-    updated_at: "2023-01-01T00:00:00Z",
-    fork: false,
-    visibility: "public",
-  },
-  {
-    id: 2,
-    name: "another-repo",
-    full_name: "test/another-repo",
-    description: "Another test repository",
-    html_url: "https://github.com/test/another-repo",
-    stargazers_count: 5,
-    language: "JavaScript",
-    updated_at: "2023-01-02T00:00:00Z",
-    fork: false,
-    visibility: "public",
-  },
-] as GitHubRepository[]
+
 describe("useUserRepositories", () => {
   beforeEach(() => {
     vi.clearAllMocks()

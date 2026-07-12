@@ -17,7 +17,12 @@ export const UserList = ({
 
   if (!debouncedQuery || debouncedQuery.trim().length < 3) return null
 
-  if (isSearchLoading) return <LoadingSpinner />
+  if (isSearchLoading)
+    return (
+      <div className="flex justify-center py-8">
+        <LoadingSpinner />
+      </div>
+    )
 
   if (searchError && isSearchError)
     return <ErrorMessage message={searchError.message} />

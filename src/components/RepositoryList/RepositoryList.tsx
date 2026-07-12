@@ -11,7 +11,12 @@ export const RepositoryList = ({ userName }: { userName: string }) => {
     userRepositoriesError,
   } = useUserRepositories(userName)
 
-  if (isUserRepositoriesLoading) return <LoadingSpinner />
+  if (isUserRepositoriesLoading)
+    return (
+      <div className="flex justify-center py-4">
+        <LoadingSpinner />
+      </div>
+    )
 
   if (isUserRepositoriesError && userRepositoriesError)
     return <ErrorMessage message={userRepositoriesError.message} />

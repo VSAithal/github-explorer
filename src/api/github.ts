@@ -4,9 +4,16 @@ import { BASE_URL, BASIC_ERROR_MESSAGE } from "./constants"
 export const searchUsers = async (
   query: string,
 ): Promise<SearchUsersResponse> => {
-  const response = await fetch(
-    `${BASE_URL}/search/users?q=${encodeURIComponent(query)}&per_page=5`,
-  )
+  let response: Response
+  try {
+    response = await fetch(
+      `${BASE_URL}/search/users?q=${encodeURIComponent(query)}&per_page=5`,
+    )
+  } catch {
+    throw new Error(
+      "Network error. Please check your connection and try again.",
+    )
+  }
 
   if (!response.ok) {
     let errorMessage = BASIC_ERROR_MESSAGE
@@ -17,6 +24,11 @@ export const searchUsers = async (
       }
     } catch {
       if (response.status === 403) {
+        const resetTime = response.headers.get("x-ratelimit-reset")
+        if (resetTime) {
+          const time = new Date(parseInt(resetTime) * 1000).toLocaleTimeString()
+          throw new Error(`API rate limit exceeded. Resets at ${time}.`)
+        }
         throw new Error("API rate limit exceeded. Please try again later.")
       } else if (response.status === 422) {
         throw new Error("Invalid search query. Please check your input.")
@@ -33,9 +45,16 @@ export const searchUsers = async (
 export const fetchUserRepositories = async (
   userName: string,
 ): Promise<GitHubRepository[]> => {
-  const response = await fetch(
-    `${BASE_URL}/users/${userName}/repos?per_page=100&sort=updated`,
-  )
+  let response: Response
+  try {
+    response = await fetch(
+      `${BASE_URL}/users/${userName}/repos?per_page=100&sort=updated`,
+    )
+  } catch {
+    throw new Error(
+      "Network error. Please check your connection and try again.",
+    )
+  }
 
   if (!response.ok) {
     let errorMessage = BASIC_ERROR_MESSAGE

@@ -38,6 +38,7 @@ const App = () => {
         value={inputValue}
         onChange={handleInputChange}
         onSearch={handleSearch}
+        placeholder="Search GitHub users..."
       />
 
       <UserList

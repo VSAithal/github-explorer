@@ -1,7 +1,7 @@
 import { fetchUserRepositories } from "@/api/github"
 import { useQuery } from "@tanstack/react-query"
 
-export const useUserRepositories = (username: string | null) => {
+export const useUserRepositories = (userName: string | null) => {
   const {
     data: userRepositories,
     isLoading: isUserRepositoriesLoading,
@@ -9,9 +9,9 @@ export const useUserRepositories = (username: string | null) => {
     isFetching: isUserRepositoriesFetching,
     isError: isUserRepositoriesError,
   } = useQuery({
-    queryKey: ["repos", username],
-    queryFn: () => fetchUserRepositories(username!),
-    enabled: username !== null,
+    queryKey: ["repos", userName],
+    queryFn: () => fetchUserRepositories(userName!),
+    enabled: userName !== null,
   })
 
   return {

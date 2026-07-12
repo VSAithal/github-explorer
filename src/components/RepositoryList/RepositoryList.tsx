@@ -29,7 +29,7 @@ export const RepositoryList = ({ userName }: { userName: string }) => {
     )
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 max-h-96 overflow-y-auto pr-6 pt-2 pb-2">
       {userRepositories.map((repo) => (
         <RepositoryItem key={repo.id} repository={repo} />
       ))}

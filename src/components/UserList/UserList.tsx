@@ -33,7 +33,10 @@ export const UserList = ({
     )
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
+      <p className="text-sm text-muted-foreground">
+        Showing users for "{debouncedQuery}"
+      </p>
       {searchResults.items.map((user) => (
         <UserItem
           key={user.id}

@@ -12,10 +12,10 @@ export const UserItem = ({
   onToggle: (userName: string) => void
 }) => {
   return (
-    <div className="w-full border rounded-lg">
+    <div className="w-full border rounded-lg bg-card overflow-hidden">
       <button
         onClick={() => onToggle(user.login)}
-        className="flex items-center gap-3 w-full p-3 hover:bg-muted cursor-pointer"
+        className="flex items-center gap-3 w-full p-4 hover:bg-muted cursor-pointer transition-colors"
         aria-expanded={isExpanded}
       >
         <img

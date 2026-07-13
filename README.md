@@ -1,5 +1,7 @@
 # GitHub Explorer
 
+A responsive single-page application that lets you search for GitHub users and explore their public repositories. Built with React, TypeScript and React Query as part of a frontend technical assessment.
+
 ## Live Demo
 
 [View live demo](https://github-explorer-one-snowy.vercel.app)

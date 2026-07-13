@@ -75,7 +75,9 @@ The search uses two separate state variables — `inputValue` drives the input d
 
 ## Testing Approach
 
-Tests are written with Vitest and React Testing Library. The test suite covers three layers — utility functions (debounce), custom hooks (useSearchUsers, useUserRepositories), and UI components (RepositoryList, UserItem). Hooks are tested with a real React Query setup using a dedicated QueryWrapper with retries disabled. Components are tested in isolation by mocking their hook dependencies directly, keeping each test focused on rendering behaviour rather than data fetching logic.
+Tests are written with Vitest and React Testing Library across 7 test files with 37 tests total. The suite covers three layers — utility functions (`debounce`), custom hooks (`useSearchUsers`, `useUserRepositories`), and UI components (`SearchInput`, `UserList`, `RepositoryList`, `UserItem`).
+
+Hooks are tested with a real React Query setup using a dedicated `QueryWrapper` with retries disabled, and the API layer is mocked at the function level using `vi.mock`. Components are tested in isolation by mocking their hook dependencies directly, keeping each test focused on rendering behaviour rather than data fetching logic. Shared test fixtures live in `src/test/fixtures.ts` to avoid duplication across test files.
 
 ---
 

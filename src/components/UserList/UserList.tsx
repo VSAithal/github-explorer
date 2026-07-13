@@ -33,7 +33,7 @@ export const UserList = ({
     )
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3" aria-live="polite">
       <p className="text-sm text-muted-foreground">
         Showing users for "{debouncedQuery}"
       </p>

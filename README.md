@@ -1,6 +1,6 @@
 # GitHub Explorer
 
-A responsive single-page application that lets you search for GitHub users and explore their public repositories. Built with React, TypeScript and React Query as part of a frontend technical assessment.
+A responsive single-page application that lets you search for GitHub users and explore their public repositories. Built with React, TypeScript and React Query as part of a frontend technical assessment. Includes full error handling, request cancellation, an error boundary for unexpected failures, and a comprehensive test suite across utilities, hooks and components.
 
 ## Live Demo
 

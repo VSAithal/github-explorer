@@ -46,3 +46,9 @@ export const mockSearchResponse: SearchUsersResponse = {
   incomplete_results: false,
   items: mockUsers,
 }
+
+export const mockEmptyUsersSearchResponse: SearchUsersResponse = {
+  total_count: 0,
+  incomplete_results: false,
+  items: [],
+}

@@ -1,5 +1,9 @@
 import type { GitHubRepository, SearchUsersResponse } from "@/types/github"
-import { BASE_URL, BASIC_ERROR_MESSAGE } from "./constants"
+import {
+  BASE_URL,
+  BASIC_ERROR_MESSAGE,
+  NETWORK_ERROR_MESSAGE,
+} from "./constants"
 import { getRateLimitMessage } from "./helpers"
 
 export const searchUsers = async (
@@ -11,9 +15,7 @@ export const searchUsers = async (
       `${BASE_URL}/search/users?q=${encodeURIComponent(query)}&per_page=5`,
     )
   } catch {
-    throw new Error(
-      "Network error. Please check your connection and try again.",
-    )
+    throw new Error(NETWORK_ERROR_MESSAGE)
   }
 
   if (!response.ok) {
@@ -48,9 +50,7 @@ export const fetchUserRepositories = async (
       `${BASE_URL}/users/${username}/repos?per_page=100&sort=updated`,
     )
   } catch {
-    throw new Error(
-      "Network error. Please check your connection and try again.",
-    )
+    throw new Error(NETWORK_ERROR_MESSAGE)
   }
 
   if (!response.ok) {

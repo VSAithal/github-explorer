@@ -10,7 +10,7 @@ export const useSearchUsers = (query: string) => {
     isError: isSearchError,
   } = useQuery({
     queryKey: ["users", query],
-    queryFn: () => searchUsers(query),
+    queryFn: ({ signal }) => searchUsers(query, signal),
     enabled: query.trim().length >= 3,
   })
 

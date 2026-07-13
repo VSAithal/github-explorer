@@ -8,14 +8,19 @@ import { getRateLimitMessage } from "./helpers"
 
 export const searchUsers = async (
   query: string,
+  signal?: AbortSignal,
 ): Promise<SearchUsersResponse> => {
   let response: Response
   try {
     response = await fetch(
       `${BASE_URL}/search/users?q=${encodeURIComponent(query)}&per_page=5`,
+      { signal },
     )
-  } catch {
-    throw new Error(NETWORK_ERROR_MESSAGE)
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw error
+    }
+    throw new Error(NETWORK_ERROR_MESSAGE, { cause: error })
   }
 
   if (!response.ok) {
@@ -43,14 +48,20 @@ export const searchUsers = async (
 
 export const fetchUserRepositories = async (
   username: string,
+  signal?: AbortSignal,
 ): Promise<GitHubRepository[]> => {
   let response: Response
+
   try {
     response = await fetch(
       `${BASE_URL}/users/${username}/repos?per_page=100&sort=updated`,
+      { signal },
     )
-  } catch {
-    throw new Error(NETWORK_ERROR_MESSAGE)
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw error
+    }
+    throw new Error(NETWORK_ERROR_MESSAGE, { cause: error })
   }
 
   if (!response.ok) {

@@ -10,7 +10,7 @@ export const useUserRepositories = (username: string | null) => {
     isError: isUserRepositoriesError,
   } = useQuery({
     queryKey: ["repos", username],
-    queryFn: () => fetchUserRepositories(username!),
+    queryFn: ({ signal }) => fetchUserRepositories(username!, signal),
     enabled: username !== null,
   })
 

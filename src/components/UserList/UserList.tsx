@@ -27,7 +27,7 @@ export const UserList = ({
   if (searchError && isSearchError)
     return <ErrorMessage message={searchError.message} />
 
-  if (!searchResults || searchResults?.items.length === 0)
+  if (!searchResults || searchResults.items.length === 0)
     return (
       <p className="text-sm text-muted-foreground py-4 text-center">No Users</p>
     )

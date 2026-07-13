@@ -19,7 +19,7 @@ describe("RepositoryList", () => {
       userRepositoriesError: null,
     })
 
-    render(<RepositoryList userName="testuser" />)
+    render(<RepositoryList username="testuser" />)
 
     expect(screen.getByRole("status")).toBeInTheDocument()
   })
@@ -34,7 +34,7 @@ describe("RepositoryList", () => {
       ),
       isUserRepositoriesFetching: false,
     })
-    render(<RepositoryList userName="testuser" />)
+    render(<RepositoryList username="testuser" />)
 
     expect(screen.getByRole("alert")).toBeInTheDocument()
     expect(
@@ -51,7 +51,7 @@ describe("RepositoryList", () => {
       isUserRepositoriesFetching: false,
     })
 
-    render(<RepositoryList userName="testuser" />)
+    render(<RepositoryList username="testuser" />)
 
     expect(screen.getByText("No public repositories found")).toBeInTheDocument()
   })
@@ -64,7 +64,7 @@ describe("RepositoryList", () => {
       isUserRepositoriesFetching: false,
     })
 
-    render(<RepositoryList userName="testuser" />)
+    render(<RepositoryList username="testuser" />)
 
     expect(screen.getByText("test-repo")).toBeInTheDocument()
     expect(screen.getByText("another-repo")).toBeInTheDocument()

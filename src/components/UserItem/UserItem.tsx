@@ -9,7 +9,7 @@ export const UserItem = ({
 }: {
   user: GitHubUser
   isExpanded: boolean
-  onToggle: (userName: string) => void
+  onToggle: (username: string) => void
 }) => {
   return (
     <div className="w-full border rounded-lg bg-card overflow-hidden">
@@ -35,7 +35,7 @@ export const UserItem = ({
 
       {isExpanded && (
         <div className="p-3 border-t">
-          <RepositoryList userName={user.login} />
+          <RepositoryList username={user.login} />
         </div>
       )}
     </div>

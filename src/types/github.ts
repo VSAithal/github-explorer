@@ -25,6 +25,7 @@ export interface SearchUsersResponse {
   items: GitHubUser[]
 }
 
+// Represents the error response shape from the GitHub API
 export type ApiError = {
   message: string
   documentation_url?: string

@@ -14,7 +14,7 @@ vi.mock("../UserItem/UserItem", () => ({
 }))
 
 describe("UserList", () => {
-  let mockOnToggle: (userName: string) => void
+  let mockOnToggle: (username: string) => void
 
   beforeEach(() => {
     vi.clearAllMocks()

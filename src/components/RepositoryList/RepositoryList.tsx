@@ -3,13 +3,13 @@ import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner"
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage"
 import { RepositoryItem } from "../RepositoryItem/RepositoryItem"
 
-export const RepositoryList = ({ userName }: { userName: string }) => {
+export const RepositoryList = ({ username }: { username: string }) => {
   const {
     isUserRepositoriesLoading,
     isUserRepositoriesError,
     userRepositories,
     userRepositoriesError,
-  } = useUserRepositories(userName)
+  } = useUserRepositories(username)
 
   if (isUserRepositoriesLoading)
     return (

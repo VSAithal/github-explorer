@@ -1,5 +1,6 @@
 import type { GitHubRepository, SearchUsersResponse } from "@/types/github"
 import { BASE_URL, BASIC_ERROR_MESSAGE } from "./constants"
+import { getRateLimitMessage } from "./helpers"
 
 export const searchUsers = async (
   query: string,
@@ -24,12 +25,8 @@ export const searchUsers = async (
       }
     } catch {
       if (response.status === 403) {
-        const resetTime = response.headers.get("x-ratelimit-reset")
-        if (resetTime) {
-          const time = new Date(parseInt(resetTime) * 1000).toLocaleTimeString()
-          throw new Error(`API rate limit exceeded. Resets at ${time}.`)
-        }
-        throw new Error("API rate limit exceeded. Please try again later.")
+        const rateLimitErrorMessage = getRateLimitMessage(response.headers)
+        throw new Error(rateLimitErrorMessage)
       } else if (response.status === 422) {
         throw new Error("Invalid search query. Please check your input.")
       } else {
@@ -43,12 +40,12 @@ export const searchUsers = async (
 }
 
 export const fetchUserRepositories = async (
-  userName: string,
+  username: string,
 ): Promise<GitHubRepository[]> => {
   let response: Response
   try {
     response = await fetch(
-      `${BASE_URL}/users/${userName}/repos?per_page=100&sort=updated`,
+      `${BASE_URL}/users/${username}/repos?per_page=100&sort=updated`,
     )
   } catch {
     throw new Error(
@@ -65,7 +62,8 @@ export const fetchUserRepositories = async (
       }
     } catch {
       if (response.status === 403) {
-        throw new Error("API rate limit exceeded. Please try again later.")
+        const rateLimitErrorMessage = getRateLimitMessage(response.headers)
+        throw new Error(rateLimitErrorMessage)
       } else if (response.status === 404) {
         throw new Error("User not found. Please check the username.")
       } else {

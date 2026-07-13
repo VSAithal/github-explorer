@@ -9,7 +9,7 @@ vi.mock("../RepositoryList/RepositoryList", () => ({
 
 describe("UserItem", () => {
   const mockUser = mockUsers[0]
-  let mockOnToggle: (userName: string) => void
+  let mockOnToggle: (username: string) => void
 
   beforeEach(() => {
     vi.clearAllMocks()
